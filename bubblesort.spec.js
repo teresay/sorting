@@ -16,11 +16,11 @@ describe('Bubble Sort', function(){
   it('should call swap', function() {
     spyOn(window, 'swap').and.callThrough();
     bubbleSort(arr);
-    expect(swap.calls.count()).toEqual(5);
+    expect(swap.calls.count()).toEqual(1);
 
   });
    it('should equal [0,1,2,3,4]', function() {
-    expect(arr).toEqual([0,1,2,3,4]);
+    expect(bubbleSort(arr)).toEqual([0,1,2,3,4]);
    })
 
 });
