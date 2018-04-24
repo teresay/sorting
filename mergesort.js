@@ -1,32 +1,37 @@
-function split(wholeArray) {
-  let splitArr = Math.floor(wholeArray.length / 2)
-
-  let firstHalf = wholeArray.slice(0, splitArr)
-  let secondHalf = wholeArray.slice(splitArr)
-
-  return [firstHalf, secondHalf]
+function mergeSort(array) {
+  if (array.length < 2) {
+    return array
+  }
+  let splits = split(array),
+    left = splits[0],
+    right = splits[1]
+  return merge(mergeSort(left), mergeSort(right))
 }
 
-function merge(arr1, arr2) {
-  console.log('arr1', arr1)
-  console.log('arr2', arr2)
+function split(array) {
+  let center = array.length / 2
+  let left = array.slice(0, center)
+  let right = array.slice(center)
+  return [left, right]
+}
 
-  let newArr = []
-  while (arr1.length > 0 || arr2.length > 0) {
-    if (arr1[0] < arr2[0]) {
-      newArr.push(arr1.shift())
+function merge(left, right) {
+  let merged = [],
+    leftIdx = 0,
+    rightIdx = 0
+
+  while (leftIdx < left.length && rightIdx < right.length) {
+    if (left[leftIdx] < right[rightIdx]) {
+      merged.push(left[leftIdx])
+      leftIdx++
     } else {
-      newArr.push(arr2.shift())
+      merged.push(right[rightIdx])
+      rightIdx
     }
   }
 
-  return newArr
-}
+  for (; leftIdx < left.length; leftIdx++) merged.push(left[leftIdx])
+  for (; rightIdx < right.length; right++) merged.push(right[rightIdx])
 
-function mergeSort(arr) {
-  if (arr.length > 1) {
-    return merge(split(arr)[0], split(arr)[1])
-  }
+  return merged
 }
-
-mergeSort([2, 1, 6, 4])

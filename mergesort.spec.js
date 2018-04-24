@@ -1,16 +1,39 @@
-describe('Split Array function', function() {
-  let arr = null
-  beforeEach(function() {
-    arr = [3, 1, 2, 4]
+describe('Merge sort', function() {
+  describe('split', function() {
+    it('given on array, returns two arrays', function() {
+      expect(split([])).toEqual([[], []])
+    })
+
+    it('splits array of even length', function() {
+      expect(split([5, 10])).toEqual([[5], [10]])
+    })
+
+    it('splits array of odd length', function() {
+      expect(split([4, 10, 20])).toEqual([[4], [10, 20]])
+    })
+  })
+})
+
+describe('merge', function() {
+  it('given two arrays, return an array', function() {
+    expect(merge([], [])).toEqual([])
   })
 
-  it('is able to split an array into two halves', function() {
-    // your code here
-    expect(split(arr)).toEqual([[1, 3], [2, 4]])
+  it('given two already sorted arrays of equal length, returns sorted result array', function() {
+    expect(merge([1, 5, 10], [2, 4, 11])).toEqual([1, 2, 4, 5, 10, 11])
+    expect(merge([1, 9, 10], [2, 3, 8])).toEqual([1, 2, 3, 8, 9, 10])
   })
 
-  it('is able to merge two sorted arrays into one sorted array', function() {
-    // test the merging algorithm
-    expect(mergeSort(arr)).toEqual([1, 2, 3, 4])
+  it('works for arrays of unequal length', function() {
+    exect(merge([1, 5, 10, 20, 21], [2, 4, 100])).toEqual([
+      1,
+      2,
+      4,
+      5,
+      10,
+      20,
+      21,
+      100
+    ])
   })
 })

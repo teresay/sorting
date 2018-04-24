@@ -1,7 +1,10 @@
 function bubbleSort(array) {
-  for (var end = array.length - 1; end > 0; end--) {
+  let sorted = false
+  for (var end = array.length; end > 0 && !sorted; end--) {
+    sorted = true
     for (var j = 0; j < end; j++) {
       if (!inOrder(array, j)) swap(array, j)
+      sorted = false
     }
   }
   return array
